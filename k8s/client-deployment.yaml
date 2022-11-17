@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: client-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: web
+    spec:
+      containers:
+      - image: mhalkaaf/fiboclient
+        name: client
+        ports:
+          - containerPort: 3000
+        resources: {}
+status: {}
