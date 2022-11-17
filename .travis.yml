@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true mhalkaaf/react-test npm test
+
+after_success:
+  - docker build -t mhalkaaf/fiboclient ./client
+  - docker build -t mhalkaaf/fibonginx ./nginx
+  - docker build -t mhalkaaf/fiboserver ./server
+  - docker build -t mhalkaaf/fiboworker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push mhalkaaf/fiboclient
+  - docker push mhalkaaf/fibonginx
+  - docker push mhalkaaf/fiboserver
+  - docker push mhalkaaf/fiboworker
