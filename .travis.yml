@@ -16,14 +16,14 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project {config set project}
-  - gcloud config set compute/zone {set zone}
-  - gcloud container cluster get-credentials {cluster}
+  - gcloud config set project fiboapp-gcp-k8s
+  - gcloud config set compute/zone asia-southeast1-a
+  - gcloud container cluster get-credentials fiboapp-new
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev
 
 script:
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true mhalkaaf/react-test npm test
 
 deploy:
   provider: script
