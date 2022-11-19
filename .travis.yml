@@ -4,9 +4,30 @@ language: generic
 services:
   - docker
 
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+
 before_install:
+  - openssl aes-256-cbc -K $encrypted_012b868e8caa_key -iv $encrypted_012b868e8caa_iv -in fiboapp-gcp-k8s.json.enc -out fiboapp-gcp-k8s.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project {config set project}
+  - gcloud config set compute/zone {set zone}
+  - gcloud container cluster get-credentials {cluster}
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev
+
+script:
+  - docker run -e CI=true USERNAME/react-test npm test
+
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
   
