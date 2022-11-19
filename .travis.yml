@@ -20,7 +20,7 @@ before_install:
   - gcloud config set compute/zone asia-southeast1-a
   - gcloud container clusters get-credentials fiboapp-new
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev
+  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true mhalkaaf/react-test npm test
