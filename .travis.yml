@@ -18,7 +18,7 @@ before_install:
   - gcloud auth activate-service-account --key-file fiboapp-gcp-k8s.json
   - gcloud config set project fiboapp-gcp-k8s
   - gcloud config set compute/zone asia-southeast1-a
-  - gcloud container cluster get-credentials fiboapp-new
+  - gcloud container clusters get-credentials fiboapp-new
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev
 
