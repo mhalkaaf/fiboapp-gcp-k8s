@@ -15,7 +15,7 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud auth activate-service-account --key-file fiboapp-gcp-k8s.json
   - gcloud config set project fiboapp-gcp-k8s
   - gcloud config set compute/zone asia-southeast1-a
   - gcloud container cluster get-credentials fiboapp-new
