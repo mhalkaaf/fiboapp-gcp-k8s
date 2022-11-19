@@ -3,7 +3,7 @@ kind: Certificate
 metadata:
   name: haeckaldev.com-tls
 spec:
-  secretname: haeckaldev.com
+  secretName: haeckaldev-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
