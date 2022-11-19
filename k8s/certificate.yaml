@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: haeckaldev.com-tls
+spec:
+  secretname: haeckaldev.com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: haeckaldev.com
+  dnsNames:
+    - haeckaldev.com
+    - www.haeckaldev.com
