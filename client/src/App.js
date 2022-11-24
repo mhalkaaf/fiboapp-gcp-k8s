@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <h1>REACT APPLICATION KUBERNETES VERSION!!</h1>
-          <h2>Muhammad Haeckal Al Kaaf</h2>
+          <h2>Muhammad Haeckal Al Kaaf NEW</h2>
           <img src={logo} className="App-logo" alt="logo" />
           <a
             className="App-link"
