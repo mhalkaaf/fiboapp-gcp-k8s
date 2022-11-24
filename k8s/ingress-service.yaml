@@ -41,7 +41,7 @@ spec:
                 name: server-cluster-ip-service
                 port:
                   number: 5000
-          - path: /prometheus/?(.*)
+          - path: /api/prometheus/?(.*)
             # UPDATE PATH
             pathType: Prefix
             # ADD PATHTYPE
@@ -74,7 +74,7 @@ spec:
                 name: server-cluster-ip-service
                 port:
                   number: 5000
-          - path: /prometheus/?(.*)
+          - path: /api/prometheus/?(.*)
             # UPDATE PATH
             pathType: Prefix
             # ADD PATHTYPE
