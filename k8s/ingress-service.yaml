@@ -41,6 +41,16 @@ spec:
                 name: server-cluster-ip-service
                 port:
                   number: 5000
+          - path: /prometheus/?(.*)
+            # UPDATE PATH
+            pathType: Prefix
+            # ADD PATHTYPE
+            backend:
+              service:
+                # UPDATE SERVICE FIELDS
+                name: prometheus-grafana
+                port:
+                  number: 3000
     - host: www.haeckaldev.com
       http:
         paths:
@@ -64,3 +74,13 @@ spec:
                 name: server-cluster-ip-service
                 port:
                   number: 5000
+          - path: /prometheus/?(.*)
+            # UPDATE PATH
+            pathType: Prefix
+            # ADD PATHTYPE
+            backend:
+              service:
+                # UPDATE SERVICE FIELDS
+                name: prometheus-grafana
+                port:
+                  number: 3000
